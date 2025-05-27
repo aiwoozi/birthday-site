@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Sayang</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Yayyyy it's my baby's birthday 🩵</h1>
+
+    <button onclick="showLoveLetter()">Click me 💌</button>
+
+    <div id="letter" class="hidden">
+      <p>I love you sayang. You're my favourite person in this whole wide world. Thank you for always having my back and being by my side.
+      I'm sorry for always acting out, getting mad, being rude to you. I don't mean any harm at all. I love you a lot after all.
+      Sometimes I just don't know why I'm acting this way. I feel bad for ever giving you a hard time. I don't like hogging all of your
+      time either. But I'm sorry I'm just so lonely and you seem to be the only thing that's keeping me going these days. I can't seem to
+      get anything done without you. You're my biggest source of comfort and I love you very much. I can't wait to see us grow together.
+      Keep being the most cool and amazing and talented person you are. I wish we could build more and more fun memories ahead.
+      Keep doing you, and you know I'll always always support your dreams. And here's to many more years ahead with you Harris.
+      Happy Birthday Sayang! </p>
+    </div>
+
+    <h2>Our Memories 📸</h2>
+    <div class="gallery">
+      <button onclick="prevMedia()">⏮️ Prev</button>
+
+      <div id="mediaContainer">
+        <img id="media" src="assets/meandharrisA.jpg" alt="Us together" width="300" />
+      </div>
+
+      <button onclick="nextMedia()">Next ⏭️</button>
+    </div>
+  </div>
+
+  <script>
+    function showLoveLetter() {
+      document.getElementById("letter").classList.toggle("hidden");
+    }
+
+    const mediaFiles = [
+      { type: 'img', src: 'assets/meandharrisA.jpg' },
+      { type: 'img', src: 'assets/meandharrisB.jpg' },
+      { type: 'img', src: 'assets/meandharrisC.jpg' },
+      { type: 'img', src: 'assets/meandharrisD.jpg' },
+      { type: 'img', src: 'assets/meandharrisE.jpg' },
+      { type: 'video', src: 'assets/meandharrisF.mp4' }
+    ];
+
+    let currentIndex = 0;
+
+    function showMedia(index) {
+      const container = document.getElementById("mediaContainer");
+      const media = mediaFiles[index];
+
+      if (media.type === "img") {
+        container.innerHTML = `<img id="media" src="${media.src}" alt="Us together" width="300" />`;
+      } else if (media.type === "video") {
+        container.innerHTML = `
+          <video width="320" controls autoplay>
+            <source src="${media.src}" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        `;
+      }
+    }
+
+    function nextMedia() {
+      currentIndex = (currentIndex + 1) % mediaFiles.length;
+      showMedia(currentIndex);
+    }
+
+    function prevMedia() {
+      currentIndex = (currentIndex - 1 + mediaFiles.length) % mediaFiles.length;
+      showMedia(currentIndex);
+    }
+  </script>
+</body>
+</html>
